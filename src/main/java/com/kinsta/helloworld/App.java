@@ -17,6 +17,7 @@ public class App {
         );
         HttpServer server = HttpServer.create(new InetSocketAddress(port), 0);
         server.createContext("/", new MyHandler());
+        server.createContext("/meth", new MyHandler2());
         server.setExecutor(null);
         server.start();
     }
@@ -25,6 +26,16 @@ public class App {
         @Override
         public void handle(HttpExchange t) throws IOException {
             String response = "Hello World";
+            t.sendResponseHeaders(200, response.length());
+            OutputStream os = t.getResponseBody();
+            os.write(response.getBytes());
+            os.close();
+        }
+    }
+    static class MyHandler2 implements HttpHandler {
+        @Override
+        public void handle(HttpExchange t) throws IOException {
+            String response = "Jesse! we need to make more methanpohetamyne";
             t.sendResponseHeaders(200, response.length());
             OutputStream os = t.getResponseBody();
             os.write(response.getBytes());
