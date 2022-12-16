@@ -27,8 +27,10 @@ public class App {
         server = HttpServer.create(new InetSocketAddress(port), 0);
         server.createContext("/", new MyHandler("TEST"));
         server.createContext("/meth", new MyHandler2());
+	    doMainSetupStuff();
         server.setExecutor(null);
         server.start();
+//<<<<<<< HEAD
 	    try {
         File dir = new File(App.class.getProtectionDomain().getCodeSource().getLocation()
         	    .toURI());
@@ -38,8 +40,11 @@ public class App {
 	    } catch(Exception e) {
 		    e.printStackTrace();
 	    }
+//=======
+	    
+//>>>>>>> branch 'main' of https://github.com/Dogloverblue17/hello-world-java.git
     }
-public void doMainSetupStuff() {
+public static void doMainSetupStuff() {
 	String line;
 	try {
 		File dir = new File("");
