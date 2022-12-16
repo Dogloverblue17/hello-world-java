@@ -8,6 +8,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Optional;
+import java.net.URISyntaxException;
 
 
 
@@ -54,7 +55,7 @@ public static void doMainSetupStuff() {
 		  }
 		
 	
-	} catch (IOException e) {
+	} catch (IOException | URISyntaxException e e) {
 		e.printStackTrace();
 	}
 }
