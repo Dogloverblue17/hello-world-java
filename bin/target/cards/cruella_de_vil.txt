@@ -1,0 +1,22 @@
+{
+   "name": "Cruella De Vil",
+   "subtitle": "Miserable As Usual",
+   "ink-cost": 2,
+   "color": "Emerald",
+   "diamond-amount": 1,
+   "types": [
+      "Storyborn",
+      "Villain"
+   ],
+   "power": 1,
+   "toughnes": 3,
+   "abilities": [
+      {
+         "You'll Be Sorry!": "When this character is challenged and banished, you may return chosen character to their player's hand."
+      }
+   ],
+   "traits": null,
+   "lore": "When she stop by, misery is company.",
+   "artist": "Nicholas Kole",
+   "set": "TFC"
+}

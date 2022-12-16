@@ -1,0 +1,23 @@
+{
+   "name": "Esla",
+   "subtitle": "Snow Queen",
+   "ink-cost": 3,
+   "color": "Amethyst",
+   "diamond-amount": 1,
+   "types": [
+      "Dreamborn",
+      "Hero",
+      "Queen",
+      "Sorcerer"
+   ],
+   "power": 2,
+   "toughnes": 3,
+   "abilities": [
+      {
+         "FREEZE": "Excert chosen opposing character."
+      }
+   ],
+   "lore": "Recreated by magical ink, Elsa found herself in an unfamiliar new world. Fortunately, ice works the same way everywhere.",
+   "artist": "Nicholas Kole",
+   "set": "TCP"
+}
