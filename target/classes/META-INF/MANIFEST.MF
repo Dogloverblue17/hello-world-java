@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Built-By: Jacob
+Build-Jdk: 17.0.5
+Main-Class: com.kinsta.helloworld.App
+Created-By: Maven Integration for Eclipse
+
