@@ -22,8 +22,8 @@ public class App {
         server.start();
         File dir = new File("");
 		System.out.println(dir.exists());
-		File[] directoryListing = dir.listFiles();
-        System.out.println(directoryListing.toString());
+		//File[] directoryListing = dir.listFiles();
+      //  System.out.println(directoryListing.toString());
     }
 
     static class MyHandler implements HttpHandler {
