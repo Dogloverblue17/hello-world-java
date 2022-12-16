@@ -27,16 +27,10 @@ public class App {
         server = HttpServer.create(new InetSocketAddress(port), 0);
         server.createContext("/", new MyHandler("TEST"));
         server.createContext("/meth", new MyHandler2());
+	    doMainSetupStuff();
         server.setExecutor(null);
         server.start();
-	    try {
-        File dir = new File("");
-		System.out.println(dir.exists());
-		File[] directoryListing = dir.listFiles();
-        System.out.println(directoryListing.toString());
-	    } catch(Exception e) {
-		    e.printStackTrace();
-	    }
+	    
     }
 public void doMainSetupStuff() {
 	String line;
