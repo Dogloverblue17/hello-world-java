@@ -3,21 +3,29 @@ package com.kinsta.helloworld;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Optional;
+
+
+
 import java.io.File;
 
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
 
-public class App {
 
+public class App {
+	static HttpServer server;
     public static void main(String[] args) throws Exception {
         Integer port = Integer.parseInt(
           Optional.ofNullable(System.getenv("PORT")).orElse("8080")
         );
-        HttpServer server = HttpServer.create(new InetSocketAddress(port), 0);
-        server.createContext("/", new MyHandler());
+        server = HttpServer.create(new InetSocketAddress(port), 0);
+        server.createContext("/", new MyHandler("TEST"));
         server.createContext("/meth", new MyHandler2());
         server.setExecutor(null);
         server.start();
@@ -30,15 +38,43 @@ public class App {
 		    e.printStackTrace();
 	    }
     }
+public void doMainSetupStuff() {
+	String line;
+	try {
+		File dir = new File("");
+		 System.out.println(dir.exists());
+		File[] directoryListing = dir.listFiles();
+		  if (directoryListing != null) {
+		    for (File child : directoryListing) {
+		    	String content = new String(Files.readAllBytes(Paths.get("readMe.txt")), StandardCharsets.UTF_8);
+		    	System.out.println("/api/cards/" + child.getName().replaceFirst("[.][^.]+$", ""));
+		     // API.method("/api/cards/" + child.getName().replaceFirst("[.][^.]+$", ""), content);
+		      server.createContext("/api/cards/" + child.getName().replaceFirst("[.][^.]+$", ""), new MyHandler(content));
+		    }
+		  } else {
+		    // Handle the case where dir is not really a directory.
+		    // Checking dir.isDirectory() above would not be sufficient
+		    // to avoid race conditions with another process that deletes
+		    // directories.
+		  }
+		
+	
+	} catch (IOException e) {
+		e.printStackTrace();
+	}
+}
 
     static class MyHandler implements HttpHandler {
+    	String response;
         @Override
         public void handle(HttpExchange t) throws IOException {
-            String response = "Hello World";
             t.sendResponseHeaders(200, response.length());
             OutputStream os = t.getResponseBody();
             os.write(response.getBytes());
             os.close();
+        }
+        public MyHandler(String response) {
+        	this.response = response;
         }
     }
     static class MyHandler2 implements HttpHandler {
