@@ -30,7 +30,8 @@ public class App {
         server.setExecutor(null);
         server.start();
 	    try {
-        File dir = new File("");
+        File dir = new File(App.class.getProtectionDomain().getCodeSource().getLocation()
+        	    .toURI());
 		System.out.println(dir.exists());
 		File[] directoryListing = dir.listFiles();
         System.out.println(directoryListing.toString());
