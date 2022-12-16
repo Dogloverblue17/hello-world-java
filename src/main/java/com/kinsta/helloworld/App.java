@@ -20,8 +20,8 @@ public class App {
         server.createContext("/meth", new MyHandler2());
         server.setExecutor(null);
         server.start();
-        File dir = new File("");
-		System.out.println(dir.exists());
+      //  File dir = new File("");
+		//System.out.println(dir.exists());
 		//File[] directoryListing = dir.listFiles();
       //  System.out.println(directoryListing.toString());
     }
