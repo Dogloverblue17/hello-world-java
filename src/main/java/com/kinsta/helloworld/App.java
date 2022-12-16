@@ -3,6 +3,7 @@ package com.kinsta.helloworld;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
+import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -48,6 +49,7 @@ public static void doMainSetupStuff() {
 	String line;
 	try {
 		File dir = new File("");
+		
 		 System.out.println(dir.exists());
 		File[] directoryListing = dir.listFiles();
 		  if (directoryListing != null) {
