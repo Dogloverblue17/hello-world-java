@@ -9,6 +9,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Optional;
+import java.net.URISyntaxException;
 
 
 
@@ -31,26 +32,18 @@ public class App {
 	    doMainSetupStuff();
         server.setExecutor(null);
         server.start();
-//<<<<<<< HEAD
-	    try {
-        File dir = new File(App.class.getProtectionDomain().getCodeSource().getLocation()
-        	    .toURI());
-		System.out.println(dir.exists());
-		File[] directoryListing = dir.listFiles();
-        System.out.println(directoryListing.toString());
-	    } catch(Exception e) {
-		    e.printStackTrace();
-	    }
-//=======
-	    
-//>>>>>>> branch 'main' of https://github.com/Dogloverblue17/hello-world-java.git
+
     }
 public static void doMainSetupStuff() {
 	String line;
 	try {
-		File dir = new File("");
-		
+
+
+		 File dir = new File(App.class.getProtectionDomain().getCodeSource().getLocation()
+        	    .toURI());
+
 		 System.out.println(dir.exists());
+		 System.out.println(dir.getPath());
 		File[] directoryListing = dir.listFiles();
 		  if (directoryListing != null) {
 		    for (File child : directoryListing) {
@@ -67,7 +60,7 @@ public static void doMainSetupStuff() {
 		  }
 		
 	
-	} catch (IOException e) {
+	} catch (IOException | URISyntaxException e) {
 		e.printStackTrace();
 	}
 }
