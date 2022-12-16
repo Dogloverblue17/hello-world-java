@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.util.Optional;
+import java.io.File;
 
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
@@ -20,10 +21,14 @@ public class App {
         server.createContext("/meth", new MyHandler2());
         server.setExecutor(null);
         server.start();
-        File dir = new File("hello.txt");
-		//System.out.println(dir.exists());
-		//File[] directoryListing = dir.listFiles();
-      //  System.out.println(directoryListing.toString());
+	    try {
+        File dir = new File("");
+		System.out.println(dir.exists());
+		File[] directoryListing = dir.listFiles();
+        System.out.println(directoryListing.toString());
+	    } catch(Exception e) {
+		    e.printStackTrace();
+	    }
     }
 
     static class MyHandler implements HttpHandler {
