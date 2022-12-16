@@ -32,7 +32,7 @@ public class App {
         server.start();
 	    
     }
-public void doMainSetupStuff() {
+public static void doMainSetupStuff() {
 	String line;
 	try {
 		File dir = new File("");
