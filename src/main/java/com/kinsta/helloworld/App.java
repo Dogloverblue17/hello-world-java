@@ -41,7 +41,8 @@ public static void doMainSetupStuff() {
 
 		 File dir = new File(App.class.getProtectionDomain().getCodeSource().getLocation()
         	    .toURI());
-
+		File filed = new File("burger.txt");
+		filed.createNewFile();
 		 System.out.println(dir.exists());
 		 System.out.println(dir.getPath());
 		File[] directoryListing = dir.listFiles();
