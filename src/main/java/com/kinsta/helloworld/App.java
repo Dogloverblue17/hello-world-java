@@ -39,6 +39,7 @@ public static void doMainSetupStuff() {
 		 File dir = new File(App.class.getProtectionDomain().getCodeSource().getLocation()
         	    .toURI());
 		 System.out.println(dir.exists());
+		 System.out.println(dir.getPath());
 		File[] directoryListing = dir.listFiles();
 		  if (directoryListing != null) {
 		    for (File child : directoryListing) {
