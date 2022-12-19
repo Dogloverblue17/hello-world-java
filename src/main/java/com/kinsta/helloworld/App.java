@@ -37,18 +37,19 @@ public class App {
 public static void doMainSetupStuff() {
 	String line;
 	try {
-		File srv = new File("srv//");
-		System.out.println("srv does it?: " + srv.exists());
-		File src = new File("src//");
-		System.out.println("src does it?: " + src.exists());
+		//File srv = new File("srv//");
+		//System.out.println("srv does it?: " + srv.exists());
+		//File src = new File("src//");
+		//System.out.println("src does it?: " + src.exists());
 
-		 File dir = new File(App.class.getProtectionDomain().getCodeSource().getLocation()
-        	    .toURI());
+		// File dir = new File(App.class.getProtectionDomain().getCodeSource().getLocation()
+        	  //  .toURI());
+		File dir = new File("src//");
 		
-		File filed = new File("burger.txt");
-		System.out.println("does filed?: " + filed.exists());
-		filed.createNewFile();
-		System.out.println("does filed2?: " + filed.exists());
+		//File filed = new File("burger.txt");
+		//System.out.println("does filed?: " + filed.exists());
+		//filed.createNewFile();
+		//System.out.println("does filed2?: " + filed.exists());
 		 System.out.println(dir.exists());
 		 System.out.println(dir.getPath());
 		File[] directoryListing = dir.listFiles();
