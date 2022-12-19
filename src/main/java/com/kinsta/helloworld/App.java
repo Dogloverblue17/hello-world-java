@@ -37,20 +37,28 @@ public class App {
 public static void doMainSetupStuff() {
 	String line;
 	try {
+		//File srv = new File("srv//");
+		//System.out.println("srv does it?: " + srv.exists());
+		//File src = new File("src//");
+		//System.out.println("src does it?: " + src.exists());
 
-
-		 File dir = new File(App.class.getProtectionDomain().getCodeSource().getLocation()
-        	    .toURI());
-
+		// File dir = new File(App.class.getProtectionDomain().getCodeSource().getLocation()
+        	  //  .toURI());
+		File dir = new File("src//");
+		
+		//File filed = new File("burger.txt");
+		//System.out.println("does filed?: " + filed.exists());
+		//filed.createNewFile();
+		//System.out.println("does filed2?: " + filed.exists());
 		 System.out.println(dir.exists());
 		 System.out.println(dir.getPath());
 		File[] directoryListing = dir.listFiles();
 		  if (directoryListing != null) {
 		    for (File child : directoryListing) {
-		    	String content = new String(Files.readAllBytes(Paths.get("readMe.txt")), StandardCharsets.UTF_8);
+		    	//String content = new String(Files.readAllBytes(Paths.get("readMe.txt")), StandardCharsets.UTF_8);
 		    	System.out.println("/api/cards/" + child.getName().replaceFirst("[.][^.]+$", ""));
 		     // API.method("/api/cards/" + child.getName().replaceFirst("[.][^.]+$", ""), content);
-		      server.createContext("/api/cards/" + child.getName().replaceFirst("[.][^.]+$", ""), new MyHandler(content));
+		      server.createContext("/api/cards/" + child.getName().replaceFirst("[.][^.]+$", ""), new MyHandler("i pooped my pants"));
 		    }
 		  } else {
 		    // Handle the case where dir is not really a directory.
@@ -60,7 +68,7 @@ public static void doMainSetupStuff() {
 		  }
 		
 	
-	} catch (IOException | URISyntaxException e) {
+	} catch (Exception e) {
 		e.printStackTrace();
 	}
 }
