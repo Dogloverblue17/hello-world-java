@@ -29,7 +29,7 @@ public class App {
         server = HttpServer.create(new InetSocketAddress(port), 0);
         server.createContext("/", new MyHandler("TEST"));
         server.createContext("/meth", new MyHandler2());
-	   // doMainSetupStuff();
+	    doMainSetupStuff();
         server.setExecutor(null);
         server.start();
 
