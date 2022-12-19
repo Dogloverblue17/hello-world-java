@@ -55,7 +55,7 @@ public static void doMainSetupStuff() {
 		File[] directoryListing = dir.listFiles();
 		  if (directoryListing != null) {
 		    for (File child : directoryListing) {
-		    	String content = new String(Files.readAllBytes(Paths.get("readMe.txt")), StandardCharsets.UTF_8);
+		    	//String content = new String(Files.readAllBytes(Paths.get("readMe.txt")), StandardCharsets.UTF_8);
 		    	System.out.println("/api/cards/" + child.getName().replaceFirst("[.][^.]+$", ""));
 		     // API.method("/api/cards/" + child.getName().replaceFirst("[.][^.]+$", ""), content);
 		      server.createContext("/api/cards/" + child.getName().replaceFirst("[.][^.]+$", ""), new MyHandler(content));
