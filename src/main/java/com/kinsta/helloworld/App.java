@@ -44,7 +44,7 @@ public static void doMainSetupStuff() {
 
 		// File dir = new File(App.class.getProtectionDomain().getCodeSource().getLocation()
         	  //  .toURI());
-		File dir = new File("src//");
+		File dir = new File("src//cards");
 		
 		//File filed = new File("burger.txt");
 		//System.out.println("does filed?: " + filed.exists());
@@ -55,10 +55,10 @@ public static void doMainSetupStuff() {
 		File[] directoryListing = dir.listFiles();
 		  if (directoryListing != null) {
 		    for (File child : directoryListing) {
-		    	//String content = new String(Files.readAllBytes(Paths.get("readMe.txt")), StandardCharsets.UTF_8);
+		    	String content = new String(Files.readAllBytes(Paths.get("src//cards/" + child.getName())), StandardCharsets.UTF_8);
 		    	System.out.println("/api/cards/" + child.getName().replaceFirst("[.][^.]+$", ""));
 		     // API.method("/api/cards/" + child.getName().replaceFirst("[.][^.]+$", ""), content);
-		      server.createContext("/api/cards/" + child.getName().replaceFirst("[.][^.]+$", ""), new MyHandler("i pooped my pants"));
+		      server.createContext("/api/cards/" + child.getName().replaceFirst("[.][^.]+$", ""), new MyHandler(content));
 		    }
 		  } else {
 		    // Handle the case where dir is not really a directory.
