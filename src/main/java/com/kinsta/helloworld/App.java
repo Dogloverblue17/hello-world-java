@@ -68,7 +68,7 @@ public static void doMainSetupStuff() {
 		  }
 		
 	
-	} catch (IOException e) {
+	} catch (Exception e) {
 		e.printStackTrace();
 	}
 }
