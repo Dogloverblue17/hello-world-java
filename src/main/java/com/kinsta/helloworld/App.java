@@ -68,7 +68,7 @@ public static void doMainSetupStuff() {
 		  }
 		
 	
-	} catch (IOException | URISyntaxException e) {
+	} catch (IOException e) {
 		e.printStackTrace();
 	}
 }
