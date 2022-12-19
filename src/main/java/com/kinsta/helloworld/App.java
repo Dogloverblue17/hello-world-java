@@ -77,8 +77,8 @@ public static void doMainSetupStuff() {
     	String response;
         @Override
         public void handle(HttpExchange t) throws IOException {
-            t.sendResponseHeaders(200, response.length());
 	    t.getResponseHeaders().set("Content-Type", String.format("application/json; charset=%s", StandardCharsets.UTF_8));
+            t.sendResponseHeaders(200, response.length());
             OutputStream os = t.getResponseBody();
             os.write(response.getBytes());
             os.close();
