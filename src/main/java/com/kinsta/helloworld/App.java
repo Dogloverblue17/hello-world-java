@@ -56,9 +56,9 @@ public static void doMainSetupStuff() {
 		  if (directoryListing != null) {
 		    for (File child : directoryListing) {
 		    	String content = new String(Files.readAllBytes(Paths.get("src//cards/" + child.getName())), StandardCharsets.UTF_8);
-		    	System.out.println("/api/cards/" + child.getName().replaceFirst("[.][^.]+$", ""));
+		    	System.out.println("/cards" + child.getName().replaceFirst("[.][^.]+$", ""));
 		     // API.method("/api/cards/" + child.getName().replaceFirst("[.][^.]+$", ""), content);
-		      server.createContext("/api/cards/" + child.getName().replaceFirst("[.][^.]+$", ""), new MyHandler(content));
+		      server.createContext("/cards" + child.getName().replaceFirst("[.][^.]+$", ""), new MyHandler(content));
 		    }
 		  } else {
 		    // Handle the case where dir is not really a directory.
