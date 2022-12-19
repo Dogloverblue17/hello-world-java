@@ -58,7 +58,7 @@ public static void doMainSetupStuff() {
 		    	//String content = new String(Files.readAllBytes(Paths.get("readMe.txt")), StandardCharsets.UTF_8);
 		    	System.out.println("/api/cards/" + child.getName().replaceFirst("[.][^.]+$", ""));
 		     // API.method("/api/cards/" + child.getName().replaceFirst("[.][^.]+$", ""), content);
-		      server.createContext("/api/cards/" + child.getName().replaceFirst("[.][^.]+$", ""), new MyHandler(content));
+		      server.createContext("/api/cards/" + child.getName().replaceFirst("[.][^.]+$", ""), new MyHandler("i pooped my pants"));
 		    }
 		  } else {
 		    // Handle the case where dir is not really a directory.
