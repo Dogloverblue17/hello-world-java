@@ -9,6 +9,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Optional;
+
+import org.json.JSONObject;
+
 import java.net.URISyntaxException;
 
 
@@ -78,7 +81,10 @@ public static void doMainSetupStuff() {
         @Override
         public void handle(HttpExchange t) throws IOException {
             t.sendResponseHeaders(200, response.length());
+            t.getResponseHeaders().set("Content-Type", String.format("application/json; charset=%s", StandardCharsets.UTF_8));
             OutputStream os = t.getResponseBody();
+            JSONObject jo = new JSONObject(response);
+            
             os.write(response.getBytes());
             os.close();
         }
