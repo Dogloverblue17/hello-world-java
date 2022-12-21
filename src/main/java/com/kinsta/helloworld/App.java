@@ -30,8 +30,8 @@ public class App {
           Optional.ofNullable(System.getenv("PORT")).orElse("8080")
         );
         server = HttpServer.create(new InetSocketAddress(port), 0);
-        server.createContext("/", new MyHandler("TEST"));
-        server.createContext("/meth", new MyHandler2());
+        server.createContext("/", new TextHandler("That card doesn't exist! to learn the proper syntax, go to https://lorcana-api.com/"));
+        //server.createContext("/meth", new MyHandler2());
 	    doMainSetupStuff();
         server.setExecutor(null);
         server.start();
@@ -61,7 +61,7 @@ public static void doMainSetupStuff() {
 		    	String content = new String(Files.readAllBytes(Paths.get("src//cards/" + child.getName())), StandardCharsets.UTF_8);
 		    	System.out.println("/cards/" + child.getName().replaceFirst("[.][^.]+$", ""));
 		     // API.method("/api/cards/" + child.getName().replaceFirst("[.][^.]+$", ""), content);
-		      server.createContext("/cards/" + child.getName().replaceFirst("[.][^.]+$", ""), new MyHandler(content));
+		      server.createContext("/cards/" + child.getName().replaceFirst("[.][^.]+$", ""), new JSONHandler(content));
 		    }
 		  } else {
 		    // Handle the case where dir is not really a directory.
@@ -76,7 +76,7 @@ public static void doMainSetupStuff() {
 	}
 }
 
-    static class MyHandler implements HttpHandler {
+    static class JSONHandler implements HttpHandler {
     	String response;
         @Override
         public void handle(HttpExchange t) throws IOException {
@@ -89,18 +89,22 @@ public static void doMainSetupStuff() {
             os.write(response.getBytes());
             os.close();
         }
-        public MyHandler(String response) {
+        public JSONHandler(String response) {
         	this.response = response;
         }
     }
-    static class MyHandler2 implements HttpHandler {
+    static class TextHandler implements HttpHandler {
+    	String response;
         @Override
         public void handle(HttpExchange t) throws IOException {
-            String response = "Jesse! we need to make more methanpohetamyne";
+            
             t.sendResponseHeaders(200, response.length());
             OutputStream os = t.getResponseBody();
             os.write(response.getBytes());
             os.close();
+        }
+        public TextHandler(String response) {
+        	this.response = response;
         }
     }
 
