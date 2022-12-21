@@ -82,7 +82,7 @@ public static void doMainSetupStuff() {
         public void handle(HttpExchange t) throws IOException {
 	    t.getResponseHeaders().set("Content-Type", String.format("application/json; charset=%s", StandardCharsets.UTF_8));
             t.sendResponseHeaders(200, response.length());
-            t.getResponseHeaders().set("Content-Type", String.format("application/json; charset=%s", StandardCharsets.UTF_8));
+      
             OutputStream os = t.getResponseBody();
             JSONObject jo = new JSONObject(response);
             
