@@ -84,7 +84,6 @@ public static void doMainSetupStuff() {
             t.sendResponseHeaders(200, response.length());
       
             OutputStream os = t.getResponseBody();
-            JSONObject jo = new JSONObject(response);
             
             os.write(response.getBytes());
             os.close();

@@ -1,22 +1,25 @@
 {
-   "name": "MALEFICENT",
-   "subtitle": "Monstrous Dragon",
-   "ink": 9,
-   "color: Ruby",
-   "diamond-cost": 2",
-   "types": [
-      "Storyborn",
-      "Villain",
-      "Dragon"
-   ],
-   "power": 7,
-   "toughnes": 5,
-   "abilities": [
-      {
-         "DRAGON FIRE": "When you play this character, you may banish chosen opposing character."
-      }
-   ],
-   "lore": "The ninth Rule of Villainy: When all else fails, turn into a dragon.",
-   "artist": "Luis Huerta",
-   "set": "1st"
+    "name": "MALEFICENT",
+    "subtitle": "Monstrous Dragon",
+    "ink": 9,
+    "color": "Ruby",
+    "diamond-cost": 2,
+    "type": "character",
+    "subtypes": [
+        "Storyborn",
+        "Villain",
+        "Dragon"
+    ],
+    "power": 7,
+    "toughnes": 5,
+    "abilities": [
+        {
+            "Dragon Fire": "When you play this character, you may banish chosen opposing character."
+        }
+    ],
+    "traits": null,
+    "lore": "The ninth Rule of Villainy: When all else fails, turn into a dragon.",
+    "artist": "Luis Huerta",
+    "set": "The First Chapter",
+    "set-code": "TFC"
 }
