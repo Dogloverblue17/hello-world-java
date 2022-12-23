@@ -57,9 +57,9 @@ public static void doMainSetupStuff() {
 				if (fileListing != null) {
 				    for (File child : fileListing) {
 		    	String content = new String(Files.readAllBytes(Paths.get("src//data/" + name + "/" + child.getName())), StandardCharsets.UTF_8);
-		    	System.out.println("/data/" + name + "/" + child.getName().replaceFirst("[.][^.]+$", ""));
+		    	System.out.println("/" + name + "/" + child.getName().replaceFirst("[.][^.]+$", ""));
 		     
-		      server.createContext("/data/" + name + "/" + child.getName().replaceFirst("[.][^.]+$", ""), new JSONHandler(content));
+		      server.createContext("/" + name + "/" + child.getName().replaceFirst("[.][^.]+$", ""), new JSONHandler(content));
 		    }
 		  } else {
 		    
