@@ -40,9 +40,12 @@ public static void doMainSetupStuff() {
 	String line;
 	String name;
 	try {
+
 	
 		File dir = new File("src//data");
-		
+
+
+
 		 System.out.println(dir.exists());
 		 System.out.println(dir.getPath());
 		File[] directoryListing = dir.listFiles();
