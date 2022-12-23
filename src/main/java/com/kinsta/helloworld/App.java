@@ -65,7 +65,7 @@ public static void doMainSetupStuff() {
 		    
 		  }}}
 		
-	
+	JSONObject s;
 	} catch (Exception e) {
 		e.printStackTrace();
 	}
