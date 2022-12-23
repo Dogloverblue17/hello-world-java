@@ -10,7 +10,7 @@
         "Hero"
     ],
     "power": 5,
-    "toughnes": 5,
+    "toughness": 5,
     "abilities": null,
     "traits": [
         "Evasive (Only characters with Evasive can challenge this characer.)"

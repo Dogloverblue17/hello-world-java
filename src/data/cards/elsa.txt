@@ -12,7 +12,7 @@
         "Sorcerer"
     ],
     "power": 2,
-    "toughnes": 3,
+    "toughness": 3,
     "abilities": [
         {
             "FREEZE": "Excert chosen opposing character."

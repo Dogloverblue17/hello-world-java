@@ -11,7 +11,7 @@
         "Alien"
     ],
     "power": 3,
-    "toughnes": 5,
+    "toughness": 5,
     "abilities": [
         {
             "Adoring Fans": "Whenever you play a character with ink cost 2 or less, you may exert it to draw a card."

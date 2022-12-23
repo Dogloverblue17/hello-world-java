@@ -45,7 +45,7 @@ public static void doMainSetupStuff() {
 		File dir = new File("src//data");
 
 
-
+		server.createContext("/tesd", new FuzzyHandler());
 		 System.out.println(dir.exists());
 		 System.out.println(dir.getPath());
 		File[] directoryListing = dir.listFiles();
@@ -87,6 +87,18 @@ public static void doMainSetupStuff() {
         	this.response = response;
         }
     }
+    static class FuzzyHandler implements HttpHandler {
+ 	   String response = "sd";
+         @Override
+         public void handle(HttpExchange t) throws IOException {
+             t.sendResponseHeaders(200, response.length());
+             System.out.println(t.getRequestURI());
+             OutputStream os = t.getResponseBody();
+             os.write(response.getBytes());
+             os.close();
+         }
+ 	    
+     }
     static class TextHandler implements HttpHandler {
 	   String response;
         @Override

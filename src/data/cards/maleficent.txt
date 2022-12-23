@@ -11,7 +11,7 @@
         "Dragon"
     ],
     "power": 7,
-    "toughnes": 5,
+    "toughness": 5,
     "abilities": [
         {
             "Dragon Fire": "When you play this character, you may banish chosen opposing character."

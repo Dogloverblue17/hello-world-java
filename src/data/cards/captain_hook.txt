@@ -12,7 +12,7 @@
         "Captain"
     ],
     "power": 1,
-    "toughnes": 2,
+    "toughness": 2,
     "abilities": null,
     "traits": "Challenger +2 \\(When challenging, this character gets +2*.\\)",
     "lore": "He loves to make light of a foe's predicament",

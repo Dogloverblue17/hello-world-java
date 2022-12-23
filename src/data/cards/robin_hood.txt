@@ -10,7 +10,7 @@
         "Hero"
     ],
     "power": 4,
-    "toughnes": 4,
+    "toughness": 4,
     "abilities": [
         {
             "Feed The Poor": "When you play this character, if an opponent has more cards in their hand than you, draw a card."
