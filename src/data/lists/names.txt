@@ -1,0 +1,9 @@
+[
+  "mickey_mouse",
+  "stitch",
+  "elsa",
+  "cruella_de_vil",
+  "maleficent",
+  "robin_hood",
+  "captain_hook"
+]

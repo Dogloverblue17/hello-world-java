@@ -38,36 +38,29 @@ public class App {
     }
 public static void doMainSetupStuff() {
 	String line;
+	String name;
 	try {
-		//File srv = new File("srv//");
-		//System.out.println("srv does it?: " + srv.exists());
-		//File src = new File("src//");
-		//System.out.println("src does it?: " + src.exists());
-
-		// File dir = new File(App.class.getProtectionDomain().getCodeSource().getLocation()
-        	  //  .toURI());
-		File dir = new File("src//cards");
+	
+		File dir = new File("src//data");
 		
-		//File filed = new File("burger.txt");
-		//System.out.println("does filed?: " + filed.exists());
-		//filed.createNewFile();
-		//System.out.println("does filed2?: " + filed.exists());
 		 System.out.println(dir.exists());
 		 System.out.println(dir.getPath());
 		File[] directoryListing = dir.listFiles();
 		  if (directoryListing != null) {
-		    for (File child : directoryListing) {
-		    	String content = new String(Files.readAllBytes(Paths.get("src//cards/" + child.getName())), StandardCharsets.UTF_8);
-		    	System.out.println("/cards/" + child.getName().replaceFirst("[.][^.]+$", ""));
-		     // API.method("/api/cards/" + child.getName().replaceFirst("[.][^.]+$", ""), content);
-		      server.createContext("/cards/" + child.getName().replaceFirst("[.][^.]+$", ""), new JSONHandler(content));
+		    for (File childdir : directoryListing) {
+		    	
+		    	name = childdir.getName();
+		    	File[] fileListing = childdir.listFiles();
+				if (fileListing != null) {
+				    for (File child : fileListing) {
+		    	String content = new String(Files.readAllBytes(Paths.get("src//" + name + "/" + child.getName())), StandardCharsets.UTF_8);
+		    	System.out.println("/" + name + "/" + child.getName().replaceFirst("[.][^.]+$", ""));
+		     
+		      server.createContext("/" + name + "/" + child.getName().replaceFirst("[.][^.]+$", ""), new JSONHandler(content));
 		    }
 		  } else {
-		    // Handle the case where dir is not really a directory.
-		    // Checking dir.isDirectory() above would not be sufficient
-		    // to avoid race conditions with another process that deletes
-		    // directories.
-		  }
+		    
+		  }}}
 		
 	
 	} catch (Exception e) {
