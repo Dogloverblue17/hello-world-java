@@ -44,7 +44,7 @@ public static void doMainSetupStuff() {
 	
 		File dir = new File("src//data");
 
-
+		JSONObject s;
 		server.createContext("/tesd", new FuzzyHandler());
 		 System.out.println(dir.exists());
 		 System.out.println(dir.getPath());
@@ -65,7 +65,7 @@ public static void doMainSetupStuff() {
 		    
 		  }}}
 		
-	JSONObject s;
+	
 	} catch (Exception e) {
 		e.printStackTrace();
 	}
