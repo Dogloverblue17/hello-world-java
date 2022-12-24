@@ -65,7 +65,7 @@ public static void doMainSetupStuff() {
 	String name;
 	try {
 		System.out.println("before");
-		JSONObject jo = new JSONObject();
+		
 		System.out.println("after");
 		File dir = new File("src//data");
 
