@@ -68,7 +68,7 @@ public static void doMainSetupStuff() {
 	
 		File dir = new File("src//data");
 
-		JSONObject s;
+		
 		server.createContext("/fuzzy/", new FuzzyHandler());
 		 System.out.println(dir.exists());
 		 System.out.println(dir.getPath());
