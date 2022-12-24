@@ -44,15 +44,6 @@ public class App {
         server.start();
 
     }
-    static void testDepends() {
-    	System.out.println("all good");
-    	JSONObject so;
-    	System.out.println("still good");
-    	so = new JSONObject();
-    	System.out.println("chillin");
-    	System.out.println("noggin: " + JSONObject.getNames(so));
-    	System.out.println("bing chillin");
-    }
     static void fuzzySetup() {
     	data = new HashMap<String, String>();
     	File dir = new File("src//data/cards");
@@ -98,7 +89,7 @@ public static void doMainSetupStuff() {
 		    
 		  }}}
 		
-	testDepends();
+	
 	} catch (Exception e) {
 		e.printStackTrace();
 	}
