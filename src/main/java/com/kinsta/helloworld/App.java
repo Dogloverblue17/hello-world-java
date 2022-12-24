@@ -8,6 +8,8 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Optional;
 
 import org.json.JSONObject;
@@ -22,8 +24,12 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
 
+import me.xdrop.fuzzywuzzy.FuzzySearch;
+import me.xdrop.fuzzywuzzy.model.ExtractedResult;
+
 
 public class App {
+	static HashMap<String, String> data;
 	static HttpServer server;
     public static void main(String[] args) throws Exception {
         Integer port = Integer.parseInt(
@@ -31,10 +37,28 @@ public class App {
         );
         server = HttpServer.create(new InetSocketAddress(port), 0);
         server.createContext("/", new TextHandler("That's not a card! To learn the proper syntax, go to https://lorcana-api.com"));
-	   doMainSetupStuff();
+	    fuzzySetup();
+        doMainSetupStuff();
+	   
         server.setExecutor(null);
         server.start();
 
+    }
+    static void fuzzySetup() {
+    	data = new HashMap<String, String>();
+    	File dir = new File("src//data/cards");
+    	File[] directoryListing = dir.listFiles();
+    	 if (directoryListing != null) {
+ 		    for (File child : directoryListing) {
+ 		    	try {
+					data.put(child.getName().replaceFirst("[.][^.]+$", ""), Files.readString(Paths.get(child.getPath())));
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+ 		    }}
+ 		    
+    //	FuzzySearch.extractOne(null, allNames);
     }
 public static void doMainSetupStuff() {
 	String line;
@@ -45,7 +69,7 @@ public static void doMainSetupStuff() {
 		File dir = new File("src//data");
 
 		JSONObject s;
-		server.createContext("/tesd", new FuzzyHandler());
+		server.createContext("/fuzzy/", new FuzzyHandler());
 		 System.out.println(dir.exists());
 		 System.out.println(dir.getPath());
 		File[] directoryListing = dir.listFiles();
@@ -92,7 +116,11 @@ public static void doMainSetupStuff() {
          @Override
          public void handle(HttpExchange t) throws IOException {
              t.sendResponseHeaders(200, response.length());
-             System.out.println(t.getRequestURI());
+             ExtractedResult result = FuzzySearch.extractOne(String.valueOf(t.getRequestURI()).replace("/fuzzy/", ""), data.keySet());
+             response = data.get(result.getString());
+             System.out.println("URI: " + t.getRequestURI());
+             System.out.println("response: " + response);
+             System.out.println("sus input: " + String.valueOf(t.getRequestURI()).replace("/fuzzy/", ""));
              OutputStream os = t.getResponseBody();
              os.write(response.getBytes());
              os.close();
