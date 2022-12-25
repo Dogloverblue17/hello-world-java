@@ -83,8 +83,9 @@ public static void doMainSetupStuff() {
 				    for (File child : fileListing) {
 		    	String content = new String(Files.readAllBytes(Paths.get("src//data/" + name + "/" + child.getName())), StandardCharsets.UTF_8);
 		    	System.out.println("/" + name + "/" + child.getName().replaceFirst("[.][^.]+$", ""));
-		     
-		      server.createContext("/" + name + "/" + child.getName().replaceFirst("[.][^.]+$", ""), new JSONHandler(content));
+		    	JSONHandler jh = new JSONHandler(content);
+		      server.createContext("/" + name + "/" + child.getName().replaceFirst("[.][^.]+$", ""), jh);
+		      server.createContext("/strict/" + child.getName().replaceFirst("[.][^.]+$", ""), jh);
 		    }
 		  } else {
 		    
@@ -116,6 +117,7 @@ public static void doMainSetupStuff() {
  	   String response = "sd";
          @Override
          public void handle(HttpExchange t) throws IOException {
+        	 t.getResponseHeaders().set("Content-Type", String.format("application/json; charset=%s", StandardCharsets.UTF_8));
              t.sendResponseHeaders(200, response.length());
              ExtractedResult result = FuzzySearch.extractOne(String.valueOf(t.getRequestURI()).replace("/fuzzy/", ""), data.keySet());
              response = data.get(result.getString());

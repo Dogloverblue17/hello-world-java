@@ -22,5 +22,5 @@
     "lore": "Recreated by magical ink, Elsa found herself in an unfamiliar new world. Fortunately, ice works the same way everywhere.",
     "artist": "Nicholas Kole",
     "set": "The First Chapter",
-    "set-code": "TCP"
+    "set-code": "TFC"
 }
