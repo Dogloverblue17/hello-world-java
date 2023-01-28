@@ -6,5 +6,9 @@
   "maleficent",
   "robin_hood",
   "captain_hook",
-  "olaf"
+  "olaf",
+  "dragon_fire",
+  "mulan",
+  "hades",
+  "jumba_jookiba"
 ]
