@@ -31,6 +31,9 @@ import me.xdrop.fuzzywuzzy.model.ExtractedResult;
 public class App {
 	static HashMap<String, String> data;
 	static HttpServer server;
+	static int JSONRequestCount = 0;
+	static int FuzzyRequestCount = 0;
+	static int TextRequestCount = 0;
     public static void main(String[] args) throws Exception {
         Integer port = Integer.parseInt(
           Optional.ofNullable(System.getenv("PORT")).orElse("8080")
@@ -64,9 +67,9 @@ public static void doMainSetupStuff() {
 	String line;
 	String name;
 	try {
-		System.out.println("before");
+		//System.out.println("before");
 		
-		System.out.println("after");
+		//System.out.println("after");
 		File dir = new File("src//data");
 
 		
@@ -101,6 +104,8 @@ public static void doMainSetupStuff() {
     	String response;
         @Override
         public void handle(HttpExchange t) throws IOException {
+		System.out.println("Json response made; it was the " + JSONRequestCount + " st/nd/rd/th JSON request");
+		JSONRequestCount++;
 	    t.getResponseHeaders().set("Content-Type", String.format("application/json; charset=%s", StandardCharsets.UTF_8));
             t.sendResponseHeaders(200, response.length());
       
@@ -117,13 +122,15 @@ public static void doMainSetupStuff() {
  	   String response = "sd";
          @Override
          public void handle(HttpExchange t) throws IOException {
+		 System.out.println("Fuzzy response made; it was the" + FuzzyRequestCount + " st/nd/rd/th Fuzzy request");
+		 FuzzyRequestCount++;
         	 t.getResponseHeaders().set("Content-Type", String.format("application/json; charset=%s", StandardCharsets.UTF_8));
              t.sendResponseHeaders(200, response.length());
              ExtractedResult result = FuzzySearch.extractOne(String.valueOf(t.getRequestURI()).replace("/fuzzy/", ""), data.keySet());
              response = data.get(result.getString());
-             System.out.println("URI: " + t.getRequestURI());
-             System.out.println("response: " + response);
-             System.out.println("sus input: " + String.valueOf(t.getRequestURI()).replace("/fuzzy/", ""));
+          //   System.out.println("URI: " + t.getRequestURI());
+           //  System.out.println("response: " + response);
+            // System.out.println("sus input: " + String.valueOf(t.getRequestURI()).replace("/fuzzy/", ""));
              OutputStream os = t.getResponseBody();
              os.write(response.getBytes());
              os.close();
@@ -134,6 +141,8 @@ public static void doMainSetupStuff() {
 	   String response;
         @Override
         public void handle(HttpExchange t) throws IOException {
+		System.out.println("Text response made; it was the " + TextRequestCount + " st/nd/rd/th Text request");
+		TextRequestCount++;
             t.sendResponseHeaders(200, response.length());
             OutputStream os = t.getResponseBody();
             os.write(response.getBytes());
