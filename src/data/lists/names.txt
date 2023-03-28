@@ -1,14 +1,18 @@
 [
-  "mickey_mouse",
-  "stitch",
-  "elsa",
-  "cruella_de_vil",
-  "maleficent",
-  "robin_hood",
-  "captain_hook",
-  "olaf",
-  "dragon_fire",
-  "mulan",
-  "hades",
-  "jumba_jookiba"
-]
+		  "captain_hook", 
+		  "cruella_de_vil", 
+		  "elsa", 
+      "gantu", 
+		  "hades", 
+		  "healing_glow", 
+		  "jumba_jookiba", 
+		  "magic_mirror", 
+		  "maleficent", 
+		  "mickey_mouse", 
+		  "olaf", 
+		  "robin_hood", 
+		  "scar", 
+		  "stitch", 
+		  "tigger", 
+		  "white_rabbits_pocket_watch"
+ ]
