@@ -34,7 +34,6 @@ public class App {
 	static int JSONRequestCount = 0;
 	static int FuzzyRequestCount = 0;
 	static int TextRequestCount = 0;
-	static File dir = new File("src//data");
     public static void main(String[] args) throws Exception {
         Integer port = Integer.parseInt(
           Optional.ofNullable(System.getenv("PORT")).orElse("8080")
@@ -64,16 +63,6 @@ public class App {
  		    
     //	FuzzySearch.extractOne(null, allNames);
     }
-    public static String getAllNames() {
-    	File cardDirectory = new File("src//data//cards");
-    	StringBuilder sb = new StringBuilder("[\n");
-    	for (File file : cardDirectory.listFiles()) {
-    		sb.append("    \"" + removeFileExtension(file.getName(), true) + "\",\n");
-    	}
-    	sb.deleteCharAt(sb.length() - 1);
-    	sb.append("]");
-    	return sb.toString();
-    }
 public static void doMainSetupStuff() {
 	String line;
 	String name;
@@ -81,7 +70,7 @@ public static void doMainSetupStuff() {
 		//System.out.println("before");
 		
 		//System.out.println("after");
-		
+		File dir = new File("src//data");
 
 		
 		server.createContext("/fuzzy/", new FuzzyHandler());
@@ -100,13 +89,10 @@ public static void doMainSetupStuff() {
 		    	JSONHandler jh = new JSONHandler(content);
 		      server.createContext("/" + name + "/" + child.getName().replaceFirst("[.][^.]+$", ""), jh);
 		      server.createContext("/strict/" + child.getName().replaceFirst("[.][^.]+$", ""), jh);
-				    }
-				} 
-			}
-		    server.createContext("/lists/cards", new JSONHandler(getAllNames()));
-		    server.createContext("/lists/names", new JSONHandler(getAllNames()));
+		    }
+		  } else {
 		    
-		  }
+		  }}}
 		
 	
 	} catch (Exception e) {
@@ -118,7 +104,7 @@ public static void doMainSetupStuff() {
     	String response;
         @Override
         public void handle(HttpExchange t) throws IOException {
-		System.out.println("Json response made; it was Json request number " + JSONRequestCount );
+		System.out.println("Json response made; it was the " + JSONRequestCount + " st/nd/rd/th JSON request");
 		JSONRequestCount++;
 	    t.getResponseHeaders().set("Content-Type", String.format("application/json; charset=%s", StandardCharsets.UTF_8));
             t.sendResponseHeaders(200, response.length());
@@ -136,7 +122,7 @@ public static void doMainSetupStuff() {
  	   String response = "sd";
          @Override
          public void handle(HttpExchange t) throws IOException {
-		 System.out.println("Fuzzy response made; it was fuzzy request number " + FuzzyRequestCount);
+		 System.out.println("Fuzzy response made; it was the" + FuzzyRequestCount + " st/nd/rd/th Fuzzy request");
 		 FuzzyRequestCount++;
         	 t.getResponseHeaders().set("Content-Type", String.format("application/json; charset=%s", StandardCharsets.UTF_8));
              t.sendResponseHeaders(200, response.length());
@@ -155,7 +141,7 @@ public static void doMainSetupStuff() {
 	   String response;
         @Override
         public void handle(HttpExchange t) throws IOException {
-		System.out.println("Text response made; it was text request number " + TextRequestCount);
+		System.out.println("Text response made; it was the " + TextRequestCount + " st/nd/rd/th Text request");
 		TextRequestCount++;
             t.sendResponseHeaders(200, response.length());
             OutputStream os = t.getResponseBody();
@@ -166,14 +152,6 @@ public static void doMainSetupStuff() {
 		    this.response = response;
 	    }
     }
-    public static String removeFileExtension(String filename, boolean removeAllExtensions) {
-        if (filename == null || filename.isEmpty()) {
-            return filename;
-        }
 
-        String extPattern = "(?<!^)[.]" + (removeAllExtensions ? ".*" : "[^.]*$");
-        return filename.replaceAll(extPattern, "");
-    }
-   
 }
 

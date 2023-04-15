@@ -4,3 +4,4 @@ Build-Jdk: 17.0.5
 Class-Path: lib/json-20180130.jar
 Main-Class: com.kinsta.helloworld.App
 Created-By: Maven Integration for Eclipse
+
