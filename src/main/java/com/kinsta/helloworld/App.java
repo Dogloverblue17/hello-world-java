@@ -70,7 +70,7 @@ public class App {
     	for (File file : cardDirectory.listFiles()) {
     		sb.append("    \"" + removeFileExtension(file.getName(), true) + "\",\n");
     	}
-    	sb.deleteCharAt(sb.length() - 1);
+    	sb.deleteCharAt(sb.length() - 2);
     	sb.append("]");
     	return sb.toString();
     }
@@ -85,6 +85,7 @@ public static void doMainSetupStuff() {
 
 		
 		server.createContext("/fuzzy/", new FuzzyHandler());
+		server.createContext("/lists/names", new JSONHandler(getAllNames()));
 		 System.out.println(dir.exists());
 		 System.out.println(dir.getPath());
 		File[] directoryListing = dir.listFiles();
