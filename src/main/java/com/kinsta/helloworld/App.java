@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Optional;
 
-import org.json.JSONObject;
 
 import java.net.URISyntaxException;
 
@@ -37,7 +36,7 @@ public class App {
 	static File dir = new File("src//data");
     public static void main(String[] args) throws Exception {
         Integer port = Integer.parseInt(
-          Optional.ofNullable(System.getenv("PORT")).orElse("8080")
+          Optional.ofNullable(System.getenv("PORT")).orElse("8080")//d
         );
         server = HttpServer.create(new InetSocketAddress(port), 0);
         server.createContext("/", new TextHandler("That's not a card! To learn the proper syntax, go to https://lorcana-api.com"));
@@ -50,7 +49,7 @@ public class App {
     }
     static void fuzzySetup() {
     	data = new HashMap<String, String>();
-    	File dir = new File("src//data/cards");
+    	File dir = new File("src//data//cards");
     	File[] directoryListing = dir.listFiles();
     	 if (directoryListing != null) {
  		    for (File child : directoryListing) {
@@ -78,13 +77,14 @@ public static void doMainSetupStuff() {
 	String line;
 	String name;
 	try {
-		//System.out.println("before");
+		//System.out.println("before");x
 		
 		//System.out.println("after");
 		
 
 		
 		server.createContext("/fuzzy/", new FuzzyHandler());
+		server.createContext("/search", new SearchHandler(data));
 		server.createContext("/lists/names", new JSONHandler(getAllNames()));
 		 System.out.println(dir.exists());
 		 System.out.println(dir.getPath());
@@ -105,7 +105,7 @@ public static void doMainSetupStuff() {
 				} 
 			}
 		    server.createContext("/lists/cards", new JSONHandler(getAllNames()));
-		    server.createContext("/lists/names", new JSONHandler(getAllNames()));
+		   
 		    
 		  }
 		

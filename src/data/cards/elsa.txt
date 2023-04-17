@@ -1,5 +1,5 @@
 {
-    "name": "Esla",
+    "name": "Elsa",
     "subtitle": "Snow Queen",
     "ink-cost": 3,
     "color": "Amethyst",
