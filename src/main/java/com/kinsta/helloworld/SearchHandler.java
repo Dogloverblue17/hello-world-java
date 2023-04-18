@@ -35,15 +35,38 @@ public class SearchHandler implements HttpHandler {
 			try {
 			boolean passed = true;
 			JSONObject jsonO = new JSONObject(data.get(key));
+			equalsLoop:
 			for (String key2: equalsParams.keySet()) {
+				JSONArray ja;
+				if ((ja = jsonO.optJSONArray(key2)) != null) {
+					passed = false;
+					for (Object d: ja.toList()) {
+						if (String.valueOf(d).equalsIgnoreCase(equalsParams.get(key2))) {
+							passed = true;
+							continue equalsLoop;
+						} else {
+							//System.out.println(String.valueOf(d) + " : " + equalsParams.get(key2));
+						}
+					}
+				}
 				if (!(String.valueOf(jsonO.get(key2)).replace(" ", "_").equalsIgnoreCase(String.valueOf(equalsParams.get(key2))))) {
-				System.out.println("false on the equals:" + (String.valueOf(jsonO.get(key2))) + " : " + equalsParams.get(key2));
 					passed = false;
 				} else {
-					System.out.println("true on the equalsa");
 				}
+				
 			}
+			containsLoop:
 			for (String key3: containsParams.keySet()) {
+				JSONArray ja;
+				if ((ja = jsonO.optJSONArray(key3)) != null) {
+					passed = false;
+					for (Object d: ja.toList()) {
+						if (String.valueOf(d).toLowerCase().contains(containsParams.get(key3).toLowerCase())) {
+							passed = true;
+							continue containsLoop;
+						}
+					}
+				}
 				if (!(String.valueOf(jsonO.get(key3)).replace(" ", "_").toLowerCase().contains(String.valueOf(containsParams.get(key3)).toLowerCase()))) {
 					passed = false;
 				}
@@ -52,7 +75,6 @@ public class SearchHandler implements HttpHandler {
 				passedCards.add(key);
 			}
 			} catch (JSONException e) {
-				e.printStackTrace();
 			}
 			
 		}
