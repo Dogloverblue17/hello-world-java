@@ -1,4 +1,4 @@
-package com.kinsta.helloworld;
+package com.kinsta.helloworld.handlers;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -18,6 +18,11 @@ public class SearchHandler implements HttpHandler {
 	private HashMap<String, String> equalsParams;
 	private HashMap<String, String> containsParams;
 	private HashMap<String, String> data;
+	int SearchRequestCount = 0;
+	/**
+	 * A HTTPHandler that can return only cards with certain attributes equal to a certain value
+	 * @param data A hashmap of name-to-JSON data
+	 */
 	public SearchHandler(HashMap<String, String> data) {
 		equalsParams = new HashMap<>();
 		containsParams = new HashMap<>();
@@ -26,6 +31,7 @@ public class SearchHandler implements HttpHandler {
 
 	@Override
 	public void handle(HttpExchange exchange) throws IOException {
+		System.out.println("Fuzzy response made; it was fuzzy request number " + SearchRequestCount);
 		exchange.getResponseHeaders().set("Content-Type", String.format("application/json; charset=%s", StandardCharsets.UTF_8));
         
 		this.queryToMap(exchange.getRequestURI().toString());
@@ -86,6 +92,10 @@ public class SearchHandler implements HttpHandler {
          os.close();
 		
 	}
+	/**
+	 * Puts all the key-value pairs in the URL into their appropriate HashMaps
+	 * @param query The URL of the request
+	 */
 	public void queryToMap(String query){
 
 	    equalsParams.clear();
